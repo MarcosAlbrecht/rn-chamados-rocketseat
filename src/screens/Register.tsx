@@ -11,12 +11,12 @@ import { useNavigation } from '@react-navigation/native';
 export function Register() {
   const [isLoading, setIsLoading] = useState(false);
   const [patrimony, setPatrimony] = useState('');
-  const [descriptions, setDescriptions] = useState('');
+  const [description, setDescription] = useState('');
 
   const navigation = useNavigation();
   
   function handleNewOrderRegister(){
-    if (!patrimony || !descriptions) {
+    if (!patrimony || !description) {
       Alert.alert('Registrar', 'Preencha todos os campos.' );
     }
 
@@ -26,7 +26,7 @@ export function Register() {
     .collection('orders')
     .add({
       patrimony,
-      descriptions,
+      description,
       status: 'open',
       created_at: firestore.FieldValue.serverTimestamp()  
     })
@@ -57,7 +57,7 @@ export function Register() {
             mt={15}
             multiline
             textAlignVertical="top"
-            onChangeText={setDescriptions}
+            onChangeText={setDescription}
         />
 
         <Button 
